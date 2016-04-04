@@ -22,8 +22,10 @@
 }
 
 + (BOOL)runProxy {
+    NSLog(@"runProxy");
     if (![ShadowsocksRunner settingsAreNotComplete]) {
         local_main();
+        NSLog(@"local_main ended");
         return YES;
     } else {
 #ifdef DEBUG
@@ -34,6 +36,7 @@
 }
 
 + (void)reloadConfig {
+    NSLog(@"reloadConfig");
     if (![ShadowsocksRunner settingsAreNotComplete]) {
         if ([ShadowsocksRunner isUsingPublicServer]) {
             set_config("106.186.124.182", "8911", "Shadowsocks", "aes-128-cfb");

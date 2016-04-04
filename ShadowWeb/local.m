@@ -371,7 +371,7 @@ static void remote_send_cb (EV_P_ ev_io *w, int revents) {
 			ev_io_stop(EV_A_ &remote_send_ctx->io);
 			ev_io_start(EV_A_ &server->recv_ctx->io);
 		} else {
-			perror("getpeername");
+			perror("getpeername xx");
 			// not connected
 			close_and_free_remote(EV_A_ remote);
 			close_and_free_server(EV_A_ server);
@@ -564,7 +564,8 @@ void set_config(const char *server, const char *remote_port, const char* passwor
 int local_main ()
 {
     int listenfd;
-    listenfd = create_and_bind("8090");
+        // binss: 更换绑定端口
+    listenfd = create_and_bind("8864");
     if (listenfd < 0) {
 #ifdef DEBUG
         NSLog(@"bind() error..");
@@ -576,7 +577,7 @@ int local_main ()
         return 1;
     }
 #ifdef DEBUG
-    NSLog(@"server listening at port %s\n", "8090");
+    NSLog(@"server listening at port %s\n", "8864");
 #endif
 
     setnonblocking(listenfd);
